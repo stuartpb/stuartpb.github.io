@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>The very last can of hue hash!</title>
+<style>
+body {
+  background-color: white;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+input {
+  font-size: 20pt;
+  width: 80%;
+}
+
+button {
+  font-size: 20pt;
+}
+</style>
+<script>
+function hueHash(self){
+  var str = self.value;
+  var hh = 0;
+  for (var i = 0, len = str.length; i < len; i++) {
+    hh += str.charCodeAt(i)*1.25;
+  }
+
+  hh = hh % 360
+  self.style.backgroundColor = "hsl("+ hh +", 50%, 80%)"
+}
+function newBar(){
+  document.body.innerHTML+='<p><input onkeyup="hueHash(this);" autofocus><button onclick="newBar()">+</button></p>'
+}
+</script>
+</head>
+<body onload="newBar()">
+</body>
+</html>
