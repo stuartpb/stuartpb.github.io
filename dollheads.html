@@ -17,11 +17,10 @@ function drift()
   var y = 25 + Math.random() * 40;
   document.body.style.backgroundSize = size + "%";
   document.body.style.backgroundPosition = x + "% " + y + "%";
-  setTimeout("drift()",75);
 }
 </script>
 </head>
-<body onload="drift()">
+<body onload="setInterval(drift,75);">
 <object width="250" height="40" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="gsSong2958038856" name="gsSong2958038856"><param name="movie" value="http://grooveshark.com/songWidget.swf" /><param name="wmode" value="window" /><param name="allowScriptAccess" value="always" /><param name="flashvars" value="hostname=cowbell.grooveshark.com&songIDs=29580388&style=metal&p=1" /><object type="application/x-shockwave-flash" data="http://grooveshark.com/songWidget.swf" width="0" height="40"><param name="wmode" value="window" /><param name="allowScriptAccess" value="always" /><param name="flashvars" value="hostname=cowbell.grooveshark.com&songIDs=29580388&style=metal&p=1" /><span>World Destruction [Extended 12" Version] by <a href="http://grooveshark.com/artist/Time+Zone/59780" title="Time Zone">Time Zone</a> on Grooveshark</span></object></object>
 </body>
 </html>
