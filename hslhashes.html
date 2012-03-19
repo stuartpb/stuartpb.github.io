@@ -23,14 +23,16 @@ function hueHash(self){
   var str = self.value;
   var hh = 0;
   for (var i = 0, len = str.length; i < len; i++) {
-    hh += str.charCodeAt(i)*1.25;
+    hh += 7 * hh + 1.25 * str.charCodeAt(i);
   }
 
   hh = hh % 360
-  self.style.backgroundColor = "hsl("+ hh +", 50%, 80%)"
+  self.style.backgroundColor = "hsl("+ hh +", 60%, 90%)"
 }
 function newBar(){
-  document.body.innerHTML+='<p><input onkeyup="hueHash(this);" autofocus><button onclick="newBar()">+</button></p>'
+  var newp = document.createElement('p');
+  newp.innerHTML = '<input style="background-color: hsl(0,60%,90%)" onkeyup="hueHash(this);" onkeypress="if (event.keyCode==13) newBar()" autofocus><button onclick="newBar()">+</button>';
+  document.body.appendChild(newp);
 }
 </script>
 </head>
