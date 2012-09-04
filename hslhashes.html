@@ -19,19 +19,43 @@ button {
 }
 </style>
 <script>
+//My clumsy first swing at hashing.
+function what_the_hash(str){
+  var hash = 0;
+  for (var i = 0, len = str.length; i < len; i++) {
+    hash += 7 * hash + 1.25 * str.charCodeAt(i);
+  }
+  return hash;
+}
+
+//adapted from http://www.burtleburtle.net/bob/hash/doobs.html#one
+function jenkins_oneatatime(str){
+  var hash = 0;
+  for (var i = 0, len = str.length; i < len; i++) {
+    hash += str.charCodeAt(i)
+    hash += (hash << 10);
+    hash ^= (hash >> 6);
+  }
+  hash += (hash << 3);
+  hash ^= (hash >> 11);
+  hash += (hash << 15); 
+  return hash;
+}
+
+var strHash = jenkins_oneatatime
+
 function hueHash(self){
   var str = self.value;
-  var hh = 0;
-  for (var i = 0, len = str.length; i < len; i++) {
-    hh += 7 * hh + 1.25 * str.charCodeAt(i);
-  }
 
-  hh = hh % 360
-  self.style.backgroundColor = "hsl("+ hh +", 60%, 90%)"
+  self.style.backgroundColor = "hsl("+ strHash(str) % 360 +", 60%, 90%)"
 }
-function newBar(){
+function newBar(self){
   var newp = document.createElement('p');
-  newp.innerHTML = '<input style="background-color: hsl(0,60%,90%)" onkeyup="hueHash(this);" onkeypress="if (event.keyCode==13) newBar()" autofocus><button onclick="newBar()">+</button>';
+  newp.innerHTML = '<input style="background-color: hsl(0,60%,90%)" ' +
+    'onkeyup="hueHash(this);" ' +
+    'onkeypress="if (event.keyCode==13) newBar(this)" autofocus>' +
+    '<button onclick="newBar()">+</button>';
+  if(self) newp.firstChild.value = self.value;
   document.body.appendChild(newp);
 }
 </script>
