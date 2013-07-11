@@ -21,7 +21,7 @@
     <div>
       <div id="atside">
         <h2>At</h2>
-        <input type="datetime-local">
+        <input type="datetime-local" id="alarmdt">
       </div>
       <div id="inside">
         <h2>In</h2>
@@ -30,14 +30,21 @@
     </div>
     <div id="godiv">
       <h2>Go to</h2>
-      <input type="url">
+      <input type="url" id="alarmtarget">
       <div>
         <button id="gobutton">Go</button>
       </div>
     </div>
 
     <script>
-      
+      document.getElementById('gobutton').addEventListener('click',
+        function (evt) {
+          var targTime = new Date(document.getElementById('alarmdt').value);
+          var nowAsLocal = Date.now() - (new Date().getTimezoneOffset()*60000);
+          setTimeout(function() {
+            location.href = document.getElementById('alarmtarget').value;
+          }, targTime.valueOf() - nowAsLocal);
+        });
     </script>
   </body>
 </html>
