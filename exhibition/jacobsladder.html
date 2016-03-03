@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>all the numbers in descending order</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+</head>
+<body>
+<div id="grower">
+<div>0</div>
+</div>
+<script>
+var topNumber = 0;
+var grower = document.getElementById('grower');
+var growerFirstChild = grower.children[0];
+var parent = document.body;
+function grow() {
+  var growth;
+  while (parent.scrollTop < window.innerHeight*10) {
+    var growerOldHeight = grower.clientHeight;
+    growth = growerFirstChild.cloneNode(false);
+    growth.textContent = ++topNumber;
+    grower.insertBefore(growth, growerFirstChild);
+    growerFirstChild = growth;
+    parent.scrollTop += grower.clientHeight - growerOldHeight;
+  }
+}
+document.addEventListener('scroll', grow);
+grow();
+</script>
+</body>
+</html>
