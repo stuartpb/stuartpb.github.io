@@ -4,25 +4,25 @@
 <meta charset="UTF-8">
 <title>all the numbers in descending order</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+<style>
+body {
+background-image:
+linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+linear-gradient(#eee .1em, transparent .1em);
+background-size: 100% 1.2em;
+}
+</style>
 </head>
 <body>
 <div id="grower">
-<div>0</div>
 </div>
 <script>
-var topNumber = 0;
 var grower = document.getElementById('grower');
-var growerFirstChild = grower.children[0];
 var parent = document.body;
 function grow() {
-  var growth;
   while (parent.scrollTop < window.innerHeight*10) {
-    var growerOldHeight = grower.clientHeight;
-    growth = growerFirstChild.cloneNode(false);
-    growth.textContent = ++topNumber;
-    grower.insertBefore(growth, growerFirstChild);
-    growerFirstChild = growth;
-    parent.scrollTop += grower.clientHeight - growerOldHeight;
+    grower.style.height = (grower.clientHeight + window.innerHeight) + 'px';
+    parent.scrollTop += window.innerHeight;
   }
 }
 document.addEventListener('scroll', grow);
