@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>THE WHOLE WORLD IS WATCHING</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+<style>
+html, body {
+  height: 100%;
+  margin: 0; padding: 0;
+  background: black;
+  color: white;
+  font-family: Oswald;
+  font-weight: bold;
+}
+p {
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+  font-size: 29vh;
+}
+</style>
+</head>
+<body>
+<p style="color: white">THE WHOLE</p>
+<p style="color: blue">WORLD</p>
+<p style="color: red">IS WATCHING</p>
+<script src="https://cdn.rawgit.com/neovov/Fullscreen-API-Polyfill/master/fullscreen-api-polyfill.min.js"></script>
+<script>
+var paragraphs = document.getElementsByTagName('p');
+paragraphs[0].addEventListener('click', function(){
+  document.documentElement.requestFullscreen();
+});
+var colors = new Array(paragraphs.length);
+for (var i = 0; i < paragraphs.length; i++) {
+  colors[i] = paragraphs[i].style.color;
+}
+var cycle = 0;
+function cycleColor() {
+  for (var i = 0; i < paragraphs.length; i++) {
+    paragraphs[paragraphs.length-1-i].style.color = colors[(i+cycle)%colors.length];
+  }
+  cycle++;
+}
+function skippingBeater(f, onBeats, offBeats) {
+  var beat = 0;
+  return function() {
+    if (beat < onBeats) {
+      f();
+    }
+    ++beat;
+    if (beat >= onBeats + offBeats) {
+      beat = 0;
+    }
+  };
+}
+cycleColor();
+// assuming synchronized clocks, start on the next beat
+var startTime = new Date().getTime();
+var timeToNextBeat = 2000 - (startTime % 2000);
+//var firstBeatTime = startTime + timeToNextBeat;
+setTimeout(function(){
+  //while (new Date().getTime < firstBeatTime);
+  setInterval(skippingBeater(cycleColor, 3, 1), 500);
+}, Math.max(timeToNextBeat, 0));
+</script>
+</body>
+</html>
