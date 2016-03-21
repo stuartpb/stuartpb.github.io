@@ -1,0 +1,12 @@
+CACHE MANIFEST
+# 2016-03-21T00:17:26.630Z
+
+CACHE:
+twwiw.html
+https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.csss
+https://fonts.googleapis.com/css?family=Oswald:700
+https://cdn.rawgit.com/neovov/Fullscreen-API-Polyfill/master/fullscreen-api-polyfill.min.js
+
+# allow remote resources, like the font asset files
+NETWORK:
+*
