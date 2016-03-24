@@ -3,7 +3,7 @@ CACHE MANIFEST
 
 CACHE:
 twwiw.html
-https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.csss
+https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css
 https://fonts.googleapis.com/css?family=Oswald:700
 https://cdn.rawgit.com/neovov/Fullscreen-API-Polyfill/master/fullscreen-api-polyfill.min.js
 
